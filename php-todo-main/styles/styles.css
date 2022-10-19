@@ -1,0 +1,5 @@
+
+form {
+    background: rgb(58, 177, 180);
+    background: linear-gradient(90deg, rgba(58, 177, 180, 0.3) 0%, rgba(29, 253, 51, 0.3) 50%, rgba(69, 232, 252, 0.3) 100%);
+}
