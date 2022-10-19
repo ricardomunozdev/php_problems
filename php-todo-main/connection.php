@@ -2,7 +2,7 @@
 
 $URI = 'mysql:host=localhost;dbname=todophp';
 $USER = 'root';
-$PASS = 'root';
+$PASS = '';
 
 
 try {
