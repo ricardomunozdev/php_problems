@@ -1,49 +1,53 @@
-<html>
+<?php include '../config/head.php'; ?>
+<br>
+<div class="row mx-sm-3 ">
+    <div class="col-6">
+        <h1>Listado de Usuarios</h1>
+    </div>
+    <div class="col-6">
+        <a href="formularioUsuario.php" class="btn btn-sm btn-outline-success float-right">
+            Registrar Nuevo Usuario
+        </a>
+    </div>
+</div>
+<hr>
+<form id="busqueda" action="index.php" method="GET" enctype="multipart/form-data" class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="usuario" class=" mb-2">Buscar </label>
+        <input type="text" class="form-control" id="buscar" name="buscar" aria-describedby="buscarHelp"> <select class="form-control" name="tipo">
+            <option value="">Seleccionar: </option>
+            <option value="dni">DNI</option>
+            <option value="apellido">Apellido</option>
+            <option value="telefono">Telefono</option>
+        </select>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="desde">Desde </label>
+        <input type="date" class="form-control" name="desde" id="desde">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="hasta">Hasta </label>
+        <input type="date" class="form-control" name="hasta" id="hasta">
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
 
-<head>
-    <?php include '../config/head.php'; ?>
-</head>
 
-<body>
-    <?php include '../config/menu.php'; ?>
-    <br>
-    <h1 class="text-center">Listado de Usuarios</h1>
-    <hr>
-    <form id="busqueda" action="index.php" method="GET" enctype="multipart/form-data">
-        <div class="form-inline">
-            <input class="form-control" type="text" name="buscar" placeholder="Ingrese Datos">
-            <select class="form-control" name="tipo">
-                <option value="">Seleccionar: </option>
-                <option value="dni">DNI</option>
-                <option value="apellido">Apellido</option>
-                <option value="telefono">Telefono</option>
-            </select>
-        </div><br>
-        <div class="form-inline">
-            <label>Desde:</label>
-            <input class="form-control" type="date" name="desde">
-        </div><br>
-        <div class="form-inline">
-            <label>Hasta:</label>
-            <input class="form-control" type="date" name="hasta">
-            <input class="form-inline btn btn-danger" type="submit" value="Consultar">
-        </div>
-    </form>
-    <p class="text-center"><a href="formularioUsuario.php" class="btn btn-warning">Registrar Nuevo Usuario</a></p>
-    <table class="table table-atriped table-borderred text-center" style="margin: 10px 10px;">
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
                 <th>FOTO</th>
-                <th>IDUSUARIO</th>
+                <!-- <th>IDUSUARIO</th> -->
                 <th>USUARIO</th>
-                <th>CONTRASEÑA</th>
+                <!-- <th>CONTRASEÑA</th> -->
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>
                 <th>DNI</th>
                 <th>NACIMIENTO</th>
-                <th>PROVINCIA</th>
-                <th>LOCALIDAD</th>
-                <th>DIRECCION</th>
+                <!-- <th>PROVINCIA</th> -->
+                <!-- <th>LOCALIDAD</th> -->
+                <!-- <th>DIRECCION</th> -->
                 <th>TELEFONO</th>
                 <th>EMAIL</th>
                 <th>SEXO</th>
@@ -69,6 +73,5 @@
             ?>
         </tbody>
     </table>
-</body>
-
-</html>
+</div>
+<?php include '../config/footer.php'; ?>

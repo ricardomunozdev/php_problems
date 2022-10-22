@@ -10,19 +10,17 @@
 
 <body>
     <h1 class="text-center">Inicio de Sesi&oacute;n</h1>
-    <form action="validar.php" method="POST" style="width: 50%; margin: 0 auto; border: 3px #2285af solid; padding:  20px;
-              border-radius: 10px; webkit-border-radius: 10px; moz-border-radius: 10px">
-        <div>
-            <label>Usuario</label>
-            <input type="text" class="form-control" name="usuario" placeholder="Ingrese Usuario" required="required">
+    <form action="validar.php" method="POST" style="width: 50%; margin: 0 auto;">
+        <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="usuarioHelp">
+            <small id="usuarioHelp" class="form-text text-muted">We'll never share your usuario with anyone else.</small>
         </div>
-        <div>
-            <label>Contrase&ntilde;a</label>
-            <input type="password" class="form-control" name="password" placeholder="Ingrese Contrase&ntilde;a" required>
-        </div><br>
-        <div>
-            <button type="submit" class="btn btn-primary">ENTRAR</button>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Contrase&ntilde;a</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
         </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
 </body>
 

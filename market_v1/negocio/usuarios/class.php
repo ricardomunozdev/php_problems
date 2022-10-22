@@ -13,16 +13,16 @@ class registros extends conexion
         $this->consulta = $this->con->query("SELECT * FROM usuarios");
         while ($this->recorrido = $this->consulta->fetch_array()) {
             echo '<tr>';
-            echo '<td>' . $this->recorrido['idusuario'] . '</td>';
+            // echo '<td>' . $this->recorrido['idusuario'] . '</td>';
             echo '<td>' . $this->recorrido['usuario'] . '</td>';
-            echo '<td>' . $this->recorrido['password'] . '</td>';
+            // echo '<td>' . $this->recorrido['password'] . '</td>';
             echo '<td>' . $this->recorrido['nombre'] . '</td>';
             echo '<td>' . $this->recorrido['apellido'] . '</td>';
             echo '<td>' . $this->recorrido['dni'] . '</td>';
             echo '<td>' . $this->recorrido['nacimiento'] . '</td>';
-            echo '<td>' . $this->recorrido['provincia'] . '</td>';
-            echo '<td>' . $this->recorrido['localidad'] . '</td>';
-            echo '<td>' . $this->recorrido['direccion'] . '</td>';
+            // echo '<td>' . $this->recorrido['provincia'] . '</td>';
+            // echo '<td>' . $this->recorrido['localidad'] . '</td>';
+            // echo '<td>' . $this->recorrido['direccion'] . '</td>';
             echo '<td>' . $this->recorrido['telefono'] . '</td>';
             echo '<td>' . $this->recorrido['email'] . '</td>';
             echo '<td>' . $this->recorrido['sexo'] . '</td>';
@@ -69,16 +69,21 @@ class registros2 extends conexion
 ?>
             <tr>
                 <td><img src="fotos/<?php echo $this->recorridos['dni']; ?> " width="80px" height="80px"></td>
-                <td><?php echo $this->recorridos['idusuario']; ?> </td>
+                <!-- <td><?php // echo $this->recorridos['idusuario']; 
+                            ?> </td> -->
                 <td><?php echo $this->recorridos['usuario']; ?> </td>
-                <td><?php echo $this->recorridos['password']; ?> </td>
+                <!-- <td><?php // echo $this->recorridos['password']; 
+                            ?> </td> -->
                 <td><?php echo $this->recorridos['nombre']; ?></td>
                 <td><?php echo $this->recorridos['apellido']; ?></td>
                 <td><?php echo $this->recorridos['dni']; ?></td>
                 <td><?php echo $this->recorridos['nacimiento']; ?></td>
-                <td><?php echo $this->recorridos['provincia']; ?></td>
-                <td><?php echo $this->recorridos['localidad']; ?></td>
-                <td><?php echo $this->recorridos['direccion']; ?></td>
+                <!-- <td><?php // echo $this->recorridos['provincia']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorridos['localidad']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorridos['direccion']; 
+                            ?></td> -->
                 <td><?php echo $this->recorridos['telefono']; ?></td>
                 <td><?php echo $this->recorridos['email']; ?></td>
                 <td><?php echo $this->recorridos['sexo']; ?></td>
@@ -100,13 +105,23 @@ class registros2 extends conexion
                             break;
                         case 6:
                             echo 'Limitado';
+                            break;
+                        default:
+                            echo '';
+                            break;
                     } ?></td>
                 <td>
                     <?php if ($this->recorridos['privilegio'] == 5) {  ?>
-                        <a class="btn btn-primary" href="vercuenta.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">Ver cuenta</a>
+                        <a class="btn btn-primary" href="vercuenta.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">
+                            Ver cuenta
+                        </a>
                     <?php } ?>
-                    <a class="btn btn-success" href="formularioUpdate.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">Modificar</a>
-                    <a class="btn btn-danger" onclick="return confirm ('Desea eliminar el registro seleccionado?');" href="formularioEliminar.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">Eliminar</a>
+                    <a class="btn btn-success" href="formularioUpdate.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">
+                        Modificar
+                    </a>
+                    <a class="btn btn-danger" onclick="return confirm ('Desea eliminar el registro seleccionado?');" href="formularioEliminar.php?idusuario=<?php echo $this->recorridos['idusuario']; ?>">
+                        Eliminar
+                    </a>
                 </td>
             </tr>
         <?php
@@ -116,21 +131,42 @@ class registros2 extends conexion
             <td colspan="16" class="text-center">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="index.php?pagina=1">
-                                <<< /a>
+                        <li class="page-item">
+                            <a class="page-link" href="index.php?pagina=1">
+                                << </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="index.php?pagina=<?php echo $_GET['pagina'] - 1 ?>">Anterior</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="index.php?pagina=<?php echo ($_GET['pagina'] - 1 === 0) ?  1 : $_GET['pagina'] - 1; ?>">
+                                Anterior
+                            </a>
+                        </li>
                         <?php
                         for ($this->i = 1; $this->i <= $this->totalregistros; $this->i++) {
                         ?>
                             <li class="page-item <?php if ($_GET['pagina'] == $this->i) {
                                                         echo 'active';
-                                                    } ?>"><a class="page-link" href="index.php?pagina=<?php echo $this->i; ?>"><?php echo $this->i; ?></a></li>
+                                                    } ?>">
+                                <a class="page-link" href="index.php?pagina=<?php echo $this->i; ?>">
+                                    <?php echo $this->i; ?>
+                                </a>
+                            </li>
                         <?php
                         }
                         ?>
-                        <li class="page-item"><a class="page-link" href="index.php?pagina=<?php echo $_GET['pagina'] + 1 ?>">Siguiente</a></li>
-                        <li class="page-item"><a class="page-link" href="index.php?pagina=<?php echo $this->i - 1; ?>">>></a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="index.php?pagina=<?php
+                                                                        if ((int)$_GET['pagina'] !== (int)$this->totalregistros)
+                                                                            echo $_GET['pagina'] + 1;
+                                                                        else
+                                                                            echo $_GET['pagina']; ?>">
+                                Siguiente
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="index.php?pagina=<?php echo $this->i - 1; ?>">
+                                >>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </td>
@@ -352,16 +388,16 @@ class registros3 extends conexion
         ?>
             <tr>
                 <td><img src="fotos/<?php echo $this->recorrido['dni']; ?> " width="80px" height="80px"></td>
-                <td><?php echo $this->recorrido['idusuario']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['idusuario']; ?></td> -->
                 <td><?php echo $this->recorrido['usuario']; ?></td>
-                <td><?php echo $this->recorrido['password']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['password']; ?></td> -->
                 <td><?php echo $this->recorrido['nombre']; ?></td>
                 <td><?php echo $this->recorrido['apellido']; ?></td>
                 <td><?php echo $this->recorrido['dni']; ?></td>
                 <td><?php echo $this->recorrido['nacimiento']; ?></td>
-                <td><?php echo $this->recorrido['provincia']; ?></td>
-                <td><?php echo $this->recorrido['localidad']; ?></td>
-                <td><?php echo $this->recorrido['direccion']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['provincia']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['localidad']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['direccion']; ?></td> -->
                 <td><?php echo $this->recorrido['telefono']; ?></td>
                 <td><?php echo $this->recorrido['email']; ?></td>
                 <td><?php echo $this->recorrido['sexo']; ?></td>
@@ -406,16 +442,16 @@ class registros3 extends conexion
         ?>
             <tr>
                 <td><img src="fotos/<?php echo $this->recorrido['dni']; ?> " width="80px" height="80px"></td>
-                <td><?php echo $this->recorrido['idusuario']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['idusuario']; ?></td> -->
                 <td><?php echo $this->recorrido['usuario']; ?></td>
-                <td><?php echo $this->recorrido['password']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['password']; ?></td> -->
                 <td><?php echo $this->recorrido['nombre']; ?></td>
                 <td><?php echo $this->recorrido['apellido']; ?></td>
                 <td><?php echo $this->recorrido['dni']; ?></td>
                 <td><?php echo $this->recorrido['nacimiento']; ?></td>
-                <td><?php echo $this->recorrido['provincia']; ?></td>
-                <td><?php echo $this->recorrido['localidad']; ?></td>
-                <td><?php echo $this->recorrido['direccion']; ?></td>
+                <!-- <td><?php // echo $this->recorrido['provincia']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['localidad']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['direccion']; ?></td> -->
                 <td><?php echo $this->recorrido['telefono']; ?></td>
                 <td><?php echo $this->recorrido['email']; ?></td>
                 <td><?php echo $this->recorrido['sexo']; ?></td>
