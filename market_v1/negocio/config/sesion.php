@@ -7,5 +7,3 @@
     } else {
         header("location:../usuarios/index.php?pagina=1");
     }
-?>
-

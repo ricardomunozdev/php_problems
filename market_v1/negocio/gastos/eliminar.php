@@ -4,4 +4,3 @@
        $eliminar = new gastos();
        $eliminar->eliminar($_GET['idgastos']);
    }
-   ?>
