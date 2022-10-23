@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'conexion.php';
+include 'models/conexion.php';
 
 class seguridad extends conexion
 {

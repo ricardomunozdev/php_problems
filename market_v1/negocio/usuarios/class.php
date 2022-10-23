@@ -184,62 +184,70 @@ class registros2 extends conexion
         $this->idusuario = $idu;
         $this->consulta = $this->con->query("SELECT * FROM proveedores WHERE idusuario ='$this->idusuario'");
     ?>
-        <table class="table table-bordered table-striped text-center" style=" width: 95%; margin: 0 auto">
-            <thead class="th-succes">
-                <tr class="bg-light">
-                    <th colspan="1" class="text-right">Nombre: </th>
-                    <th colspan="5" class="text-left">
-                        <?php
-                        $this->consulta2 = $this->con->query("SELECT apellido,nombre, telefono, direccion FROM usuarios WHERE idusuario='$this->idusuario'");
-                        if ($this->datos = $this->consulta2->fetch_array()) {
-                            echo $this->datos['apellido'] . ", " . $this->datos['nombre'] . " ► Telefono: " . $this->datos['telefono'] . " ► Dirección: " . $this->datos['direccion'];
-                        }
-                        ?>
-                    </th>
-                </tr>
-                <tr class="bg-primary">
-                    <th>Fecha</th>
-                    <th>Actividad</th>
-                    <th>Debe</th>
-                    <th>Haber</th>
-                    <th>Saldo</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+        <div class="table-responsive">
 
-                while ($this->recorridos = $this->consulta->fetch_array()) {
-                ?>
-                    <tr>
-                        <td><?php echo $this->recorridos['fecha']; ?></td>
-                        <td><?php echo $this->recorridos['actividad']; ?></td>
-                        <td>$<?php echo $this->recorridos['debe']; ?></td>
-                        <td>$<?php echo $this->recorridos['haber']; ?></td>
-                        <td>$
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr class="bg-light">
+                        <th colspan="1" class="text-right">Nombre: </th>
+                        <th colspan="5" class="text-left">
                             <?php
-                            $this->sumadebe += $this->recorridos['debe'];
-                            $this->sumahaber += $this->recorridos['haber'];
-                            echo  $this->saldo = round($this->sumadebe - $this->sumahaber, 2);
-                            //echo round(2500.589,2)
+                            $this->consulta2 = $this->con->query("SELECT apellido,nombre, telefono, direccion FROM usuarios WHERE idusuario='$this->idusuario'");
+                            if ($this->datos = $this->consulta2->fetch_array()) {
+                                echo $this->datos['apellido'] . ", " . $this->datos['nombre'] . " ► Telefono: " . $this->datos['telefono'] . " ► Dirección: " . $this->datos['direccion'];
+                            }
                             ?>
-                        </td>
-
-                        <td>
-                            <?php if ($this->recorridos['haber'] == 0) {  ?>
-                                <a class="btn btn-success btn-block" href="modificarc.php?idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">Modificar Credito</a>
-                            <?php
-                            } else { ?>
-                                <a class="btn btn-success btn-block" href="modificarp.php?idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">Modificar Pago</a>
-                            <?php } ?>
-                            <a class="btn btn-danger btn-block" href="eliminarpc.php?idusuario=<?php echo $this->recorridos['idusuario']; ?> & idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">Eliminar</a>
-                        </td>
+                        </th>
                     </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    <tr class="bg-primary">
+                        <th>Fecha</th>
+                        <th>Actividad</th>
+                        <th>Debe</th>
+                        <th>Haber</th>
+                        <th>Saldo</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    while ($this->recorridos = $this->consulta->fetch_array()) {
+                    ?>
+                        <tr>
+                            <td><?php echo $this->recorridos['fecha']; ?></td>
+                            <td><?php echo $this->recorridos['actividad']; ?></td>
+                            <td>$<?php echo $this->recorridos['debe']; ?></td>
+                            <td>$<?php echo $this->recorridos['haber']; ?></td>
+                            <td>$
+                                <?php
+                                $this->sumadebe += $this->recorridos['debe'];
+                                $this->sumahaber += $this->recorridos['haber'];
+                                echo  $this->saldo = round($this->sumadebe - $this->sumahaber, 2);
+                                ?>
+                            </td>
+
+                            <td>
+                                <?php if ($this->recorridos['haber'] == 0) {  ?>
+                                    <a class="btn btn-sm btn-success btn-block" href="modificarc.php?idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">
+                                        Modificar Credito
+                                    </a>
+                                <?php
+                                } else { ?>
+                                    <a class="btn btn-sm btn-success btn-block" href="modificarp.php?idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">
+                                        Modificar Pago
+                                    </a>
+                                <?php } ?>
+                                <a class="btn btn-sm btn-danger btn-block" href="eliminarpc.php?idusuario=<?php echo $this->recorridos['idusuario']; ?> & idproveedor=<?php echo $this->recorridos['idproveedor']; ?>">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
         <?php
 
     }
@@ -388,16 +396,21 @@ class registros3 extends conexion
         ?>
             <tr>
                 <td><img src="fotos/<?php echo $this->recorrido['dni']; ?> " width="80px" height="80px"></td>
-                <!-- <td><?php // echo $this->recorrido['idusuario']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['idusuario']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['usuario']; ?></td>
-                <!-- <td><?php // echo $this->recorrido['password']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['password']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['nombre']; ?></td>
                 <td><?php echo $this->recorrido['apellido']; ?></td>
                 <td><?php echo $this->recorrido['dni']; ?></td>
                 <td><?php echo $this->recorrido['nacimiento']; ?></td>
-                <!-- <td><?php // echo $this->recorrido['provincia']; ?></td> -->
-                <!-- <td><?php // echo $this->recorrido['localidad']; ?></td> -->
-                <!-- <td><?php // echo $this->recorrido['direccion']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['provincia']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['localidad']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['direccion']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['telefono']; ?></td>
                 <td><?php echo $this->recorrido['email']; ?></td>
                 <td><?php echo $this->recorrido['sexo']; ?></td>
@@ -442,16 +455,21 @@ class registros3 extends conexion
         ?>
             <tr>
                 <td><img src="fotos/<?php echo $this->recorrido['dni']; ?> " width="80px" height="80px"></td>
-                <!-- <td><?php // echo $this->recorrido['idusuario']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['idusuario']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['usuario']; ?></td>
-                <!-- <td><?php // echo $this->recorrido['password']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['password']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['nombre']; ?></td>
                 <td><?php echo $this->recorrido['apellido']; ?></td>
                 <td><?php echo $this->recorrido['dni']; ?></td>
                 <td><?php echo $this->recorrido['nacimiento']; ?></td>
-                <!-- <td><?php // echo $this->recorrido['provincia']; ?></td> -->
-                <!-- <td><?php // echo $this->recorrido['localidad']; ?></td> -->
-                <!-- <td><?php // echo $this->recorrido['direccion']; ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['provincia']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['localidad']; 
+                            ?></td> -->
+                <!-- <td><?php // echo $this->recorrido['direccion']; 
+                            ?></td> -->
                 <td><?php echo $this->recorrido['telefono']; ?></td>
                 <td><?php echo $this->recorrido['email']; ?></td>
                 <td><?php echo $this->recorrido['sexo']; ?></td>

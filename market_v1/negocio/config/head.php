@@ -1,8 +1,11 @@
-<html>
+<!doctype html>
+<html lang="es">
 
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
     <title>Market</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/estilos.css">
