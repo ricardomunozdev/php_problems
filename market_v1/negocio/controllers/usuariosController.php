@@ -4,14 +4,26 @@ include_once('../models/usuariosModel.php');
 
 class UsuariosController
 {
-    public function getAll()
+
+    public function getAll($buscar = null, $tipo = null, $desde = null, $hasta = null,)
     {
         $usuariosModel = new usuariosModel();
-        $getAll = $usuariosModel->getAll();
-        // esto lo puedes hacer en una sola línea
-        // $rows = (new usuariosModel())->getAll();
 
-        foreach ($getAll as $key => $result) {
+        if (!is_null($buscar) && !is_null($tipo)) {
+            $datos = $usuariosModel->buscarPorTipo($buscar, $tipo);
+        } else
+
+        if (!is_null($desde) && !is_null($hasta)) {
+            $datos = $usuariosModel->buscarPorFecha($desde, $hasta);
+        } else {
+            $datos = $usuariosModel->getAll();
+            // esto lo puedes hacer en una sola línea
+            // $rows = (new usuariosModel())->getAll();
+        }
+
+        $rows = array();
+
+        foreach ($datos as $key => $result) {
 
             switch ($result->privilegio) {
                 case 1:
@@ -50,7 +62,7 @@ class UsuariosController
             $rows[] = $result;
         }
 
-        if ($rows) {
+        if (count($rows) > 0) {
             include_once('../views/usuarios/usuariosViewGetAll.php');
         } else {
             include_once('../views/getNan.php');

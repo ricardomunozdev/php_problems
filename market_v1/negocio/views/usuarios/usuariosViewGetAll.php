@@ -4,7 +4,7 @@
             <tr>
                 <th>FOTO</th>
                 <!-- <th>IDUSUARIO</th> -->
-                <th>USUARIO</th>
+                <!-- <th>USUARIO</th> -->
                 <!-- <th>CONTRASEÑA</th> -->
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>
@@ -28,7 +28,7 @@
                     <td><img src="fotos/<?php echo $row->dni; ?> " width="80px" height="80px"></td>
                     <!-- <td><?php // $this->recorrido->idusuario; 
                                 ?></td> -->
-                    <td><?php echo $row->usuario; ?></td>
+                    <!-- <td><?php // echo $row->usuario; ?></td> -->
                     <!-- <td><?php //echo  $row->password; 
                                 ?></td> -->
                     <td><?php echo $row->nombre; ?></td>
